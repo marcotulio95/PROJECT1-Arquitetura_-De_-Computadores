@@ -4,6 +4,11 @@
 #include <avr/sleep.h>
 #include <util/delay.h>
 
+
+void USART_Init(unsigned int ubrr);
+void USART_Transmit(unsigned char data);
+unsigned char USART_Receive(void);
+
 unsigned char i=5;
 
 ISR(TIMER1_COMPA_vect){
@@ -18,7 +23,7 @@ int main(){
 	DDRB = (1<<DDB1);
 	PORTB = (1<<PB1);
 	
-	i = USART_Receive();
+	i = USART_Receive(); //Recebe o valor pela serial
 	
 	OCR1A = (F_CPU/1024)-1; //((Frequencia/Prescaler)*tempo)-1
 	
@@ -39,3 +44,28 @@ int main(){
 		
 	}
 }
+
+void USART_Transmit(unsigned char data)
+{
+	while(!(UCSRA & (1 << UDRE)));
+	UDR = data;
+}
+
+void USART_Init(unsigned int ubrr)
+{
+	//Define a velocidade
+	UBRRH = (unsigned char)(ubrr >> 8);
+	UMSEL = (0)
+	UBRRL = (unsigned char)ubrr;
+	//Desativa a receber Dados | Ativa Receber Dados
+	UCSRB = (0 << RXEN) | (1 << TXEN);
+	
+	//Define o formato
+	UCSRC = (1 << URSEL) | 0 << UMSEL |(1 << USBS) | (3 << UCSZ0);
+}
+
+unsigned char USART_Receive(void)
+{
+	while(!(UCSRA & (1 << RXC)));
+	return UDR;
+
