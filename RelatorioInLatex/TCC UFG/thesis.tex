@@ -1,0 +1,189 @@
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% UFGRC: Modelo de Trabalho Acadêmico em conformidade com 
+% ABNT NBR 14724:2011: Informação e documentação - Trabalhos acadêmicos -
+% Apresentação
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+% Opções: 
+%   Tipo do trabalho     = tcc1/tcc2
+%   Situação do trabalho = pre-defesa/pos-defesa
+% -- opções do pacote babel --
+% Idioma padrão = brazil
+	%english,			% idioma adicional para hifenização
+	%brazil				% o último idioma é o PRINCIPAL do documento
+
+\documentclass[tcc2, pos-defesa, english, brazil]{packages/ufgrc}
+
+% ---------------------------------------------------------------------------
+% Pacotes Opcionais
+% ---------------------------------------------------------------------------
+\usepackage{rotating}           % Usado para rotacionar o texto
+\usepackage[all,knot,arc,import,poly]{xy}   % Pacote para desenhos gráficos
+% Este pacote pode conflitar com outros pacotes gráficos como o ``pictex''
+% Então é necessário usar apenas um dos pacotes conflitantes
+\newcommand{\VerbL}{0.52\textwidth}
+\newcommand{\LatL}{0.42\textwidth}
+% ---------------------------------------------------------------------------
+
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+% Tanto na capa quanto nas folhas de rosto apenas a primeira letra da primeira palavra (ou nomes próprios) devem estar em letra maiúscula, todas as demais devem ser em letra minúscula.
+\titulo{Arquitetura de Computadores}
+
+\autor{ Marco Túlio Macedo Rodrigues,
+        Pablo Vinicius da Silva,
+        Vitor do Valde Bernardo }
+        
+\genero{M} % Gênero do autor (M = Masculino / F = Feminino)
+\orientador[Orientadora]{Prof. Dr.}{Tércio Alberto dos Santos Filho}
+\data{06}{2017} % Data da defesa
+% ---
+
+% Membros da banca examinadora
+% - O primeiro membro será automaticamente o orientador
+% - Caso haja coorientador, este será o segundo membro
+% Nome dos demais membros e suas instituições
+
+
+% ---
+% RESUMOS
+% ---
+
+% Resumo em PORTUGUÊS
+% conter no máximo 500 palavras
+% conter no mínimo 1 e no máximo 5 palavras-chave (obrigatoriamente separadas por vírgula)
+
+\textoresumo[brazil]{
+    Este trabalho é desenvolvido para a disciplina de Arquitetura de Computadores pela Universidade Federal de Goiás. O trabalho visa no desenvolvimento de 3 projetos, onde cada projeto visa trazer conhecimentos em diferentes da área disciplina. Estaremos abordando diferentes temas: PWM, Sleep Mode, Comunicação SPI. 
+    }{Arquitetura, Computadores, Microcontroladores, PWP, SPI}
+
+
+% resumo em INGLÊS
+% conter no máximo 500 palavras
+% conter no mínimo 1 e no máximo 5 palavras-chave (obrigatoriamente separadas por vírgula)
+
+\textoresumo[english]{
+   This work is developed for a discipline of Computer Architecture by the Federal University of Goiás. The work aims at the development of 3 projects, where each project aims to bring knowledge in different disciplines area. We will be addressing different topics: PWM, Sleep Mode, SPI Communication.
+    }{Architecture, Computer, Microcontrollers, PWP, SPI }
+    
+% ---
+% Configurações de aparência do PDF final
+% ---
+\hypersetup{
+	colorlinks=true     % false: boxed links; true: colored links
+}
+% --- 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+
+% Inserir a ficha catalográfica
+%\incluifichacatalografica*{tex/pre-textual/fichaCatalografica.pdf}
+%\incluifichacatalografica
+
+% DEDICATÓRIA / AGRADECIMENTO / EPÍGRAFE
+\textodedicatoria*{tex/pre-textual/dedicatoria}
+\textoagradecimentos*{tex/pre-textual/agradecimentos}
+\textoepigrafe*{tex/pre-textual/epigrafe}
+
+% Inclui a lista de figuras
+\incluilistadefiguras
+
+% Inclui a lista de tabelas
+%\incluilistadetabelas
+
+% Inclui a lista de quadros
+%\incluilistadequadros
+
+% Inclui a lista de algoritmos
+%\incluilistadealgoritmos
+
+% Inclui a lista de códigos
+\incluilistadecodigos
+
+% Inclui a lista de siglas e abreviaturas
+\incluilistadesiglas
+
+% Inclui a lista de símbolos
+%\incluilistadesimbolos
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+\chapter{Introdução}
+\label{chapter:introducao}
+\input{tex/introducao}
+
+\chapter{Proejeto 1: Fading LED}
+\label{chapter:Fading LED}
+\input{tex/projeto1}
+
+\chapter{Proejeto 2: Sleep Mode}
+\label{chapter:Sleep Mode}
+\input{tex/projeto2}
+
+\chapter{Proejeto 3: Comunicação SPI}
+\label{chapter: Comunicação SPI}
+\input{tex/projeto3}
+
+
+% ---
+% Finaliza a parte no bookmark do PDF, para que se inicie o bookmark na raiz
+% ---
+\bookmarksetup{startatroot}% 
+% ---
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{references}
+
+% ---------------------------------------------------------------------
+% GLOSSÁRIO
+% ---------------------------------------------------------------------
+
+% Arquivo que contém as definições que vão aparecer no glossário
+\input{tex/glossario}
+% Comando para incluir todas as definições do arquivo glossario.tex
+\glsaddall
+% Impressão do glossário
+\printglossaries
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+
+% ---
+% Inicia os apêndices
+% ---
+
+% ---
+
+
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
+
+% ---
+% Inicia os anexos
+% ---
+% ---
+
+\end{document}
